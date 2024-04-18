@@ -1,14 +1,16 @@
 import "./App.css";
-import BannerEditor from "./Components/BannerEditor";
-// import CreativeEditorSDKComponent from "./Components/imglyComp";
+// import ImageLyComp from "./Components/ImageLyComp";
+// import BannerEditor from "./Components/BannerEditor";
+import CreativeEditorSDKComponent from "./Components/imglyComp";
 // import Editor from './Components/Editor'
 
 function App() {
   return (
     <>
-      {/* <CreativeEditorSDKComponent /> */}
+      {/* <ImageLyComp /> */}
+      <CreativeEditorSDKComponent />
       {/* <Editor/> */}
-      <BannerEditor />
+      {/* <BannerEditor /> */}
     </>
   );
 }

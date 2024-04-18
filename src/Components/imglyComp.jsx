@@ -1,20 +1,18 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { useEffect, useRef, useState } from 'react';
+import { config } from '../utils/configEditor';
 
-
-const config = (cb)=>{
-    return {
-        license: 'mtLT-_GJwMhE7LDnO8KKEma7qSuzWuDxiKuQcxHKmz3fjaXWY2lT3o3Z2VdL5twm',
-        userId: 'guides-user',
-        // Enable local uploads in Asset Library
-        callbacks: { 
-          onExport: (data) => {
-              console.log('File', data);
-              cb(data);
-            },
-          onUpload: 'local' }}
-};
-
+// const config = (cb)=>{
+//     return {
+//         license: 'I7t2GZW1dyl6AOX44W04a99bcAg7ZU9-JYUej98q9zkd9idGPxP3_xMMEjliCnx5',
+//         userId: 'guides-user',
+//         // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.24.0/assets',
+//         callbacks: { 
+//           onExport: (data) => {
+//               console.log('File', data);
+//             },
+//           onUpload: 'local' }}
+// };
 
 export default function CreativeEditorSDKComponent() {
   const cesdk_container = useRef(null);
