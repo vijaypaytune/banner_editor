@@ -59,6 +59,7 @@ export default function CreativeEditorSDKComponent() {
       config(handleImageData)
     ).then(async (_instance) => {
       instance = _instance;
+      console.log(instance)
       if (cleanedUp) {
         instance.dispose();
         return;

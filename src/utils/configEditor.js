@@ -65,7 +65,9 @@ export const config = (cb) => {
     },
     ui: {
       elements: {
+        // view: 'advanced',
         navigation: {
+          // show: false,
           action: {
             close: false,
             back: false,
@@ -78,6 +80,30 @@ export const config = (cb) => {
             },
           },
         },
+        panels: {
+          assetLibrary: {
+            show: true
+          }
+        },
+        dock: {
+          iconSize: 'large', // 'large' or 'normal'
+          hideLabels: false, // false or true
+          groups: [
+            {
+              id: 'ly.img.template', // string
+              entryIds: ['ly.img.template'] // string[]
+            },
+            {
+              id: 'ly.img.text', // string
+              entryIds: ['ly.img.text'] // string[]
+            }
+          ],
+          defaultGroupId: 'ly.img.defaultGroup' // string
+        },libraries: {
+          insert: {
+            entries: (...rest) => console.log(rest)
+          }
+        }
       },
     },
   };
