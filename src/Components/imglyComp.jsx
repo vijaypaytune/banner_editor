@@ -20,7 +20,7 @@ export default function CreativeEditorSDKComponent() {
   const [cesdk, setCesdk] = useState(null);
   const [imgData, setImgData] = useState(null);
   // console.log('Conatiner ===>', cesdk)
- 
+
   const handleImageData = (data, opt) => {
     setImgData(data);
     console.log(data[0], opt);
@@ -65,16 +65,25 @@ export default function CreativeEditorSDKComponent() {
         return;
       }
 
-      // Do something with the instance of CreativeEditor SDK, for example:
-      // Populate the asset library with default / demo asset sources.
+      instance.engine.asset.addLocalSource(
+        'paytune-template',
+        undefined,
+        async function applyAsset(asset) {
+          const scene = await instance.engine.scene.createFromImage(asset.meta.uri)
+          console.log(scene)
+          instance.engine.scene.applyTemplateFromURL(asset.meta.uri);
+        }
+      );
 
-      await Promise.all([
-        instance.addDefaultAssetSources({
-          // baseURL: "http://localhost:5174/assets/demo/v2",excludeAssetSourceIds: []
-          // baseURL: "http://localhost:5174/assets/demo/v2"
-        }),
-        instance.addDemoAssetSources({ sceneMode: "Design" }),
-      ]);
+      instance.engine.asset.addAssetToSource('paytune-template', {
+        id: 'test',
+        label: 'TEST 1',
+        meta: {
+          uri: `https://images.unsplash.com/photo-1714170109707-44a3c752a83f?q=80&w=2439&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`,
+          thumbUri: `https://images.unsplash.com/photo-1714170109707-44a3c752a83f?q=80&w=2439&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`
+        }
+      });
+
       await instance.createDesignScene();
       setCesdk(instance);
     });

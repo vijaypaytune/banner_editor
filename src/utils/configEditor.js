@@ -90,18 +90,19 @@ export const config = (cb) => {
           hideLabels: false, // false or true
           groups: [
             {
-              id: 'ly.img.template', // string
-              entryIds: ['ly.img.template'] // string[]
-            },
-            {
-              id: 'ly.img.text', // string
-              entryIds: ['ly.img.text'] // string[]
-            }
-          ],
-          defaultGroupId: 'ly.img.defaultGroup' // string
-        },libraries: {
+              id: 'paytune-template-group', // string
+              entryIds: ['paytune-template-entry'] // string[]
+            }]
+        },
+        libraries: {
           insert: {
-            entries: (...rest) => console.log(rest)
+            entries: [
+              {
+              id: 'paytune-template-entry',
+              sourceIds: ['paytune-template'],
+              title: 'Paytune Template'
+            }
+            ]
           }
         }
       },
