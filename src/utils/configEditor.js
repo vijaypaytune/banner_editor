@@ -25,8 +25,8 @@ export const config = (cb) => {
         window.alert("Close callback!");
       },
       onSave: (scene) => {
-        cb(scene);
         window.alert("Save callback!");
+        cb(scene);
         console.info("Save Data ==>", scene);
       },
       onDownload: (scene) => {
@@ -59,7 +59,7 @@ export const config = (cb) => {
             thumbUri: "http://localhost:5174/assets",
           },
         };
-        console.log("CheCKING PROGRESS", onProgress);
+        console.log("Checking PROGRESS", onProgress);
         return Promise.resolve(newImage);
       },
     },
@@ -71,7 +71,7 @@ export const config = (cb) => {
           action: {
             close: false,
             back: false,
-            save: false,
+            save: true,
             download: true,
             load: false,
             export: {
@@ -90,18 +90,38 @@ export const config = (cb) => {
           hideLabels: false, // false or true
           groups: [
             {
-              id: 'ly.img.template', // string
-              entryIds: ['ly.img.template'] // string[]
+              id: 'paytune-template-group', // string
+              entryIds: ['paytune-template-entry'] // string[]
             },
+            // {
+            //   id: 'ly.img.template', // string
+            //   entryIds: ['ly.img.template'] // string[]
+            // },
+            // {
+            //   id: 'ly.img.text', // string
+            //   entryIds: ['ly.img.text'] // string[]
+            // },
             {
-              id: 'ly.img.text', // string
-              entryIds: ['ly.img.text'] // string[]
+              id: 'ly.img.defaultGroup', // string
+              showOverview: true // true or false
             }
           ],
           defaultGroupId: 'ly.img.defaultGroup' // string
-        },libraries: {
+        },
+        libraries: {
           insert: {
-            entries: (...rest) => console.log(rest)
+            entries: (defaultEntries) => {
+              console.log(defaultEntries)
+              return [
+                ...defaultEntries,
+                {
+                  id: 'paytune-template-entry',
+                  sourceIds: ['paytune-template'],
+                  title: 'Paytune Template'
+                },
+
+              ]
+            }
           }
         }
       },
